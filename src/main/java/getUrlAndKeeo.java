@@ -15,11 +15,12 @@ public class getUrlAndKeeo {
             Document doc = Jsoup.connect(Tittle).get();
             Elements str = doc.getElementsByClass("ep-time-soure");
             String newtemp = str.text();
-            String newData = newtemp.substring(0,newtemp.indexOf(" "));
-            String FileName = "./data" + File.separator + newData;
+            //String newData = newtemp.substring(0,newtemp.indexOf(" "));
+           // String FileName = "./data" + File.separator + newData;
+            String FileName = "./data" + File.separator + newtemp;
             File file = new File(FileName);
             file.createNewFile();
-            OutputStream out = new FileOutputStream(file);
+            OutputStream out = new FileOutputStream(file,true);
             Element title = doc.getElementById("h1title");
             String strInFile = title.text();
             byte [] bytes = strInFile.getBytes();
@@ -34,7 +35,7 @@ public class getUrlAndKeeo {
             }catch (Exception e)  {
                 e.printStackTrace();
             }
-            out = new FileOutputStream(file);
+            out = new FileOutputStream(file,true);
             org.jsoup.nodes.Element Etext = doc.getElementById("endText");
             strInFile = Etext.text();
             bytes = strInFile.getBytes();
@@ -49,7 +50,7 @@ public class getUrlAndKeeo {
             }catch (Exception e)  {
                 e.printStackTrace();
             }
-            out = new FileOutputStream(file);
+            out = new FileOutputStream(file,true);
             org.jsoup.nodes.Element Eimg = doc.getElementById("endText");
             Elements eles = Eimg.select("img[src]");
             String imgUrl = eles.attr("abs:src");

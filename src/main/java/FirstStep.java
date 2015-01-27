@@ -20,5 +20,6 @@ public class FirstStep {
                     Get.GetKeep(link);
                 }
             }
+        System.out.println("Done");
     }
 }
