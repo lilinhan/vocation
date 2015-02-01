@@ -21,6 +21,7 @@ public class CreatDom4jAndSave {
         //创建dom树以及根
         org.dom4j.Document dom4jDocument = DocumentHelper.createDocument();
         Element root = DocumentHelper.createElement("root");
+        dom4jDocument.setRootElement(root);
         //在根下创建title标签并写入数据
         Element domtitle = root.addElement("title");
         String newTitle = Ele.text();
@@ -37,7 +38,7 @@ public class CreatDom4jAndSave {
         Element domForward = root.addElement("forward");
         org.jsoup.nodes.Element jsoupnewForward = document.getElementById("ne_article_source");
         String newForward = jsoupnewForward.text();
-        domForward.setText(newDate);
+        domForward.setText(newForward);
         //获取新闻  在根下创建forward标签  并写入数据
         Element domContent = root.addElement("content");
         org.jsoup.nodes.Element jsoupnew = document.getElementById("endText");
@@ -50,6 +51,7 @@ public class CreatDom4jAndSave {
             Element contentImg = domContent.addElement("img src");
             contentImg.addAttribute("img src",newContentImg);
         }
+
         //将dom写入到控制台
         XMLWriter xmlWriter = new XMLWriter();
         xmlWriter.write(dom4jDocument);
@@ -57,6 +59,6 @@ public class CreatDom4jAndSave {
         OutputFormat format = new OutputFormat("    ",true);
         XMLWriter xmlWriter12 = new XMLWriter(new FileOutputStream(newDate),format);
         xmlWriter12.write(dom4jDocument);
-
+        xmlWriter.close();
     }
 }
